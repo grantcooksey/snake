@@ -36,3 +36,7 @@ fp-info-cache
 
 # Arduino
 **/build/*
+
+# Testing
+blocks/
+build/
