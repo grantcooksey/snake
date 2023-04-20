@@ -57,8 +57,10 @@ COMPILER_SPECIFIC_WARNINGS += \
   -Wno-keyword-macro \
   -Wno-reserved-id-macro \
   -Wno-shorten-64-to-32 \
-  -Wno-vla-extension
-  -Wno-suggest-override
+  -Wno-vla-extension \
+  -Wno-suggest-override \
+  -Wno-poison-system-directories \
+  -Wno-suggest-destructor-override
 endif
 
 CPPUTEST_WARNINGFLAGS += $(COMPILER_SPECIFIC_WARNINGS)
