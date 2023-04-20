@@ -17,10 +17,12 @@ Set up from
 
 Install test tools:
 ```
-brew install cpputest lcov
+brew install cpputest lcov clang-format
 ```
 
 Use `brew info cpputest` to find where the install location is. Use this value to update `CPPUTEST_HOME` in `snake/tests/MakefileWorkerOverrides.md`.
+
+Build and open a coverage report by running `make lcov && open build/test_coverage/index.html`.
 
 ## Notes
 This repo is set up to work with VSCode and has multiple non-portable C/C++ configurations for different projects defined in `.vscode/c_cpp_properties.json`.
