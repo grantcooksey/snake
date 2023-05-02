@@ -3,8 +3,8 @@
 -----
 
 You need to install some libraries
-* Adafruit GFX Library
-* Adafruit ST7735 and ST7789 Library
+* Adafruit GFX Library - 1.11.1
+* Adafruit ST7735 and ST7789 Library - 1.10.0
 
 # Tests
 

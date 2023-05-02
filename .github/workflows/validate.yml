@@ -22,6 +22,11 @@ jobs:
         with:
           cli-version: 0.31.0
           fqbn: 'arduino:avr:mega'
+          libraries: |
+            - name: 'Adafruit GFX Library'
+              version: '1.11.1'
+            - name: 'Adafruit ST7735 and ST7789 Library'
+              version: '1.10.0'
           sketch-paths: |
             - snake/snake.ino
 
@@ -33,6 +38,6 @@ jobs:
       - name: Install packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y cpputest
+          sudo apt-get install -y cpputest lcov
       - name: Run Cpputests
         run: make test
