@@ -1,0 +1,34 @@
+name: validate
+on: [push, pull_request]
+jobs:
+  formatting-check:
+    name: Format check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run clang-format style check for C/C++ programs.
+      uses: jidicula/clang-format-action@v4.11.0
+      with:
+        clang-format-version: '16'
+        fallback-style: 'Google'
+
+  compile-test:
+    name: Compile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        uses: arduino/compile-sketches@v1
+        with:
+          cli-version: 0.31.0
+          fqbn: 'arduino:avr:mega'
+          sketch-paths: |
+            - snake/snake.ino
+
+  tests:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Cpputests
+        run: make test
