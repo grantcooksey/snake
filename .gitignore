@@ -32,7 +32,7 @@ fp-info-cache
 *.csv
 
 # VS code
-.vscode/settings.json
+# .vscode/settings.json
 
 # Arduino
 **/build/*
