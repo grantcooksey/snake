@@ -40,4 +40,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y cpputest lcov
       - name: Run Cpputests
-        run: make test
+        run: make ci-test
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: JEST Tests            # Name of the check run which will be created
+          path: "**/cpputest_*.xml"
+          reporter: java-junit

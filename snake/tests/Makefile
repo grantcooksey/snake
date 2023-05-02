@@ -17,8 +17,19 @@ UNITTEST_MAKEFILES := $(wildcard $(UNITTEST_MAKEFILES_DIR)/Makefile_$(UNITTEST_M
 export UNITTEST_EXTRA_INC_PATHS += \
   -I$(PROJECT_ROOT_DIR)
 
+# Enable color!
+CPPUTEST_EXE_FLAGS_BUILDER += \
+  -c
+ifdef CI
+	CPPUTEST_EXE_FLAGS_BUILDER += -ojunit
+endif
+export CPPUTEST_EXE_FLAGS += $(CPPUTEST_EXE_FLAGS_BUILDER)
+
 # Run the test on all Makesfiles found
 all: $(UNITTEST_MAKEFILES)
+
+debug: CPPUTEST_BUILD_RULE=debug
+debug: $(UNITTEST_MAKEFILES)
 
 compile: CPPUTEST_BUILD_RULE=start
 compile: $(UNITTEST_MAKEFILES)
@@ -31,7 +42,8 @@ lcov: $(UNITTEST_MAKEFILES)
 $(UNITTEST_MAKEFILES):
 	$(MAKE) -f $@ $(CPPUTEST_BUILD_RULE)
 
-clean:
+clean: CPPUTEST_BUILD_RULE=clean
+clean: $(UNITTEST_MAKEFILES)
 	rm -rf $(UNITTEST_BUILD_DIR)
 
 .PHONY: all clean $(UNITTEST_MAKEFILES)

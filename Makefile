@@ -20,6 +20,9 @@ test:
 	$(MAKE) -C snake/tests
 	$(MAKE) -C snake/tests lcov
 
+ci-test: export CI=true
+ci-test: test
+
 clean:
 	$(MAKE) -C snake/tests clean
 

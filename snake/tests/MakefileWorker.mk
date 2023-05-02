@@ -519,6 +519,7 @@ clean:
 	$(SILENCE)rm -rf gcov $(CPPUTEST_OBJS_DIR)
 	$(SILENCE)find . -name "*.gcno" | xargs rm -f
 	$(SILENCE)find . -name "*.gcda" | xargs rm -f
+	$(SILENCE)find . -name "*.gcov" | xargs rm -f
 
 #realclean gets rid of all gcov, o and d files in the directory tree
 #not just the ones made by this makefile

@@ -8,6 +8,8 @@ You need to install some libraries
 
 # Tests
 
+Run the tests: `make test`.
+
 Set up from
 * https://github.com/memfault/interrupt/tree/master/example/unit-testing
 * https://interrupt.memfault.com/blog/unit-testing-basics
