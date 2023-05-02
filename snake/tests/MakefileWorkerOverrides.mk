@@ -74,7 +74,9 @@ export CPPUTEST_OBJS_DIR = $(UNITTEST_RESULT_DIR)/objs
 export CPPUTEST_LIB_DIR = $(UNITTEST_RESULT_DIR)/lib
 
 # Enable color!
-export CPPUTEST_EXE_FLAGS = "-c"
+export CPPUTEST_EXE_FLAGS += \
+  -c \
+  -ojunit
 
 # run MakefileWorker.mk with the variables defined here
 include MakefileWorker.mk

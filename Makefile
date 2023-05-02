@@ -2,7 +2,7 @@ SKETCH=snake
 BOARD_TYPE=arduino:avr:mega
 SERIAL_PORT=$(shell arduino-cli --format json board list | jq -r '.[] | select(.matching_boards[0].fqbn == "$(BOARD_TYPE)") | .port.address')
 
-.PHONY: all compile upload test clean
+.PHONY: all compile upload test clean format debug_serial_port
 
 all: compile upload
 
@@ -22,6 +22,9 @@ test:
 
 clean:
 	$(MAKE) -C snake/tests clean
+
+format:
+	clang-format -i **/*.h **/*.ino **/*.c **/*.cpp
 
 debug_serial_port:
 	echo '$(SERIAL_PORT)'
