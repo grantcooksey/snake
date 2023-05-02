@@ -1,15 +1,15 @@
 # where the CppUTest includes and *.a are located
 
-# Uncomment the following values depending on which system
-# This is obviously better done using `ifeq` and checking the system type
-
-# Linux Values
-# CPPUTEST_HOME ?= /usr
-# TARGET_PLATFORM ?= x86_64-linux-gnu
-
+PLATFORM_NAME = "$(shell uname -s)"
+ifeq ($(PLATFORM_NAME),"Darwin")
 # MacOS + Brew Values
-CPPUTEST_HOME ?= /usr/local/Cellar/cpputest/4.0
-TARGET_PLATFORM ?=
+	CPPUTEST_HOME ?= /usr/local/Cellar/cpputest/4.0
+	TARGET_PLATFORM ?=
+else
+# Linux Values
+	CPPUTEST_HOME ?= /usr
+	TARGET_PLATFORM ?= x86_64-linux-gnu
+endif
 
 LD_LIBRARIES = -L$(CPPUTEST_HOME)/$(TARGET_PLATFORM)lib -lCppUTest -lCppUTestExt
 
