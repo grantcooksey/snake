@@ -46,11 +46,3 @@ jobs:
         with:
           name: test-results
           path: "**/cpputest_*.xml"
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure()    # run this step even if previous step failed
-        with:
-          artifact: test-results
-          name: JUnit Tests
-          path: "**/cpputest_*.xml"
-          reporter: java-junit
