@@ -12,7 +12,7 @@
 #define SPEED_MIN 500
 #define SPEED_MAX 30
 
-const char* MESSAGE = "hi";
+const char* MESSAGE = "yo";
 
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
