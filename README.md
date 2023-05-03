@@ -17,7 +17,9 @@ Set up from
 
 Install test tools:
 ```
-brew install cpputest lcov clang-format
+brew install cpputest lcov clang-format llvm
+# https://stackoverflow.com/questions/53111082/how-to-install-clang-tidy-on-macos
+ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 ```
 
 Use `brew info cpputest` to find where the install location is. Use this value to update `CPPUTEST_HOME` in `snake/tests/MakefileWorkerOverrides.md`.

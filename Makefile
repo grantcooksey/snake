@@ -17,14 +17,14 @@ monitor: all
 	cat $(SERIAL_PORT)
 
 test:
-	$(MAKE) -C snake/tests
-	$(MAKE) -C snake/tests lcov
+	$(MAKE) -C tests
+	$(MAKE) -C tests lcov
 
 ci-test: export CI=true
 ci-test: test
 
 clean:
-	$(MAKE) -C snake/tests clean
+	$(MAKE) -C tests clean
 
 format:
 	clang-format -i **/*.h **/*.ino **/*.c **/*.cpp
