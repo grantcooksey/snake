@@ -41,6 +41,11 @@ jobs:
           sudo apt-get install -y cpputest lcov
       - name: Run Cpputests
         run: make ci-test
+      - uses: actions/upload-artifact@v3
+        if: success() || failure()
+        with:
+          name: test-results
+          path: "**/cpputest_*.xml"
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()    # run this step even if previous step failed
