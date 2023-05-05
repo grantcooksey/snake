@@ -21,21 +21,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y cpputest lcov make clang-tidy
-      - name: Build
-        uses: arduino/compile-sketches@v1
-        with:
-          cli-version: 0.31.0
-          fqbn: 'arduino:avr:mega'
-          libraries: |
-            - name: 'Adafruit GFX Library'
-              version: '1.11.1'
-            - name: 'Adafruit ST7735 and ST7789 Library'
-              version: '1.10.0'
-          sketch-paths: |
-            - snake/snake.ino
-          cli-compile-flags: |
-            - --build-path
-            - build
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/bin sh -s 0.31.0
+      - name: Compile
+        run: make compile
       - name: Run Cpputests
         run: make ci-test
       - name: Upload test report
