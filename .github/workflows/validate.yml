@@ -33,6 +33,8 @@ jobs:
               version: '1.10.0'
           sketch-paths: |
             - snake/snake.ino
+          cli-compile-flags: |
+            - --build-property build
       - name: Run Cpputests
         run: make ci-test
       - name: Upload test report

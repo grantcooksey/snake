@@ -11,6 +11,10 @@ TEST_SOURCES=$(shell find $(TEST_DIR) -type f -name "*.cpp" -o -name "*.ino" -o 
 
 all: compile upload
 
+install-arduino:
+	arduino-cli core install arduino:megaavr
+	arduino-cli lib install "Adafruit GFX Library@1.11.1"  "Adafruit ST7735 and ST7789 Library@1.10.0"
+
 compile:
 	arduino-cli compile --build-path $(BUILD_DIR) -b $(BOARD_TYPE) $(SKETCH)
 
