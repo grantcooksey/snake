@@ -38,7 +38,7 @@ clean:
 format:
 	clang-format -i $(SRC_SOURCES) $(TEST_SOURCES)
 
-check:
+check: compile
 	clang-tidy $(CPPFLAGS) -p $(BUILD_DIR) $(SRC_SOURCES)
 
 debug_serial_port:

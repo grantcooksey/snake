@@ -23,8 +23,8 @@ jobs:
           sudo apt-get install -y cpputest lcov make clang-tidy
           curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/local/bin sh -s 0.31.0
           make install-arduino
-      - name: Compile
-        run: make compile
+      - name: Check (compile and clang-tidy)
+        run: make check
       - name: Run Cpputests
         run: make ci-test
       - name: Upload test report
@@ -33,5 +33,3 @@ jobs:
         with:
           name: test-results
           path: "**/cpputest_*.xml"
-      - name: Run clang-tidy
-        run: make check

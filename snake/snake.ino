@@ -24,7 +24,7 @@ void printDebug(int16_t x, int16_t y, int16_t width, int16_t height);
 unsigned long scaleToSpeed(int unscaled, int maxAllowed, int minAllowed,
                            int unscaledMax, int unscaledMin);
 void fastResetScreen(uint8_t currentY, int16_t width, int16_t height);
-uint8_t newY(uint8_t oldY, int16_t width, int16_t height);
+uint8_t newY(uint8_t oldY);
 
 void setup(void) {
   Serial.begin(9600);
@@ -75,9 +75,9 @@ void loop() {
 
 unsigned long scaleToSpeed(int unscaled, int maxAllowed, int minAllowed,
                            int unscaledMax, int unscaledMin) {
-  unsigned long maxRange = (maxAllowed - minAllowed);  // 470
-  int unscaledwithRange = (unscaled - unscaledMin);    // analog read
-  unsigned long numerator = maxRange * unscaledwithRange;
+  uint16_t maxRange = (maxAllowed - minAllowed);          // 470
+  uint16_t unscaledwithRange = (unscaled - unscaledMin);  // analog read
+  uint32_t numerator = maxRange * unscaledwithRange;
   int denominator = unscaledMax - unscaledMin;
   int divided = numerator / denominator;
   int newScale = divided + minAllowed;
