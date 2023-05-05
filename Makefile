@@ -2,8 +2,12 @@ SKETCH=snake
 BOARD_TYPE=arduino:avr:mega
 SERIAL_PORT=$(shell arduino-cli --format json board list | jq -r '.[] | select(.matching_boards[0].fqbn == "$(BOARD_TYPE)") | .port.address')
 BUILD_DIR=build
+SRC_DIR=snake
+TEST_DIR=tests
+SRC_SOURCES=$(shell find $(SRC_DIR) -type f -name "*.cpp" -o -name "*.ino" -o -name "*.h" -o -name "*.c")
+TEST_SOURCES=$(shell find $(TEST_DIR) -type f -name "*.cpp" -o -name "*.ino" -o -name "*.h" -o -name "*.c")
 
-.PHONY: all compile upload test clean format debug_serial_port
+.PHONY: all compile upload test clean format check debug_serial_port
 
 all: compile upload
 
@@ -28,7 +32,10 @@ clean:
 	$(MAKE) -C tests clean
 
 format:
-	clang-format -i **/*.h **/*.ino **/*.c **/*.cpp
+	clang-format -i $(SRC_SOURCES) $(TEST_SOURCES)
+
+check:
+	clang-tidy $(CPPFLAGS) -p $(BUILD_DIR) $(SRC_SOURCES)
 
 debug_serial_port:
 	echo '$(SERIAL_PORT)'
