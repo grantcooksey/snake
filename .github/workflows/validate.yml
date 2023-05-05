@@ -34,7 +34,8 @@ jobs:
           sketch-paths: |
             - snake/snake.ino
           cli-compile-flags: |
-            - --build-path build
+            - --build-path
+            - build
       - name: Run Cpputests
         run: make ci-test
       - name: Upload test report
