@@ -17,8 +17,8 @@ const char* MESSAGE = "yo";
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
 uint8_t y = 30;
-int16_t textWidth;
-int16_t textHeight;
+uint16_t textWidth;
+uint16_t textHeight;
 
 void printDebug(int16_t x, int16_t y, int16_t width, int16_t height);
 unsigned long scaleToSpeed(int unscaled, int maxAllowed, int minAllowed,
@@ -58,7 +58,7 @@ void setup(void) {
 }
 
 void loop() {
-  unsigned long delayMillis = 100;
+  uint32_t delayMillis = 100;
   while (true) {
     tft.setCursor(X_CURSOR, y);
     tft.print(MESSAGE);
@@ -68,19 +68,19 @@ void loop() {
     delayMillis = scaleToSpeed(newSpeed, SPEED_MIN, SPEED_MAX, 1023, 0);
 
     // printDebug(X_CURSOR, y, textWidth, textHeight);
-    fastResetScreen(y, textWidth, textHeight);
+    fastResetScreen(y, (int16_t)textWidth, (int16_t)textHeight);
     y = newY(y);
   }
 }
 
-unsigned long scaleToSpeed(int unscaled, int maxAllowed, int minAllowed,
-                           int unscaledMax, int unscaledMin) {
-  uint16_t maxRange = (maxAllowed - minAllowed);          // 470
-  uint16_t unscaledwithRange = (unscaled - unscaledMin);  // analog read
+uint32_t scaleToSpeed(int unscaled, int maxAllowed, int minAllowed,
+                      int unscaledMax, int unscaledMin) {
+  uint32_t maxRange = (maxAllowed - minAllowed);          // 470
+  uint32_t unscaledwithRange = (unscaled - unscaledMin);  // analog read
   uint32_t numerator = maxRange * unscaledwithRange;
-  int denominator = unscaledMax - unscaledMin;
-  int divided = numerator / denominator;
-  int newScale = divided + minAllowed;
+  uint32_t denominator = unscaledMax - unscaledMin;
+  uint32_t divided = numerator / denominator;
+  uint32_t newScale = divided + minAllowed;
 
   // char buffer[60];
   // sprintf(
