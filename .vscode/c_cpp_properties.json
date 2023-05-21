@@ -3,6 +3,7 @@
     "env": {
         "arduinoCliPath": "${HOME}/Library/Arduino15",
         "arduinoLibPath": "${HOME}/Documents/Arduino",
+        "arduinoCoreVersion": "1.8.6",
         "homebrewInstallPath": "/usr/local/Cellar",
         "avrVersion": "9.4.0",
         "avrMajorVersion": "9"
@@ -22,9 +23,9 @@
             ],
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "${env:arduinoCliPath}/packages/arduino/hardware/avr/1.8.4/cores/arduino",
-                "${env:arduinoCliPath}/packages/arduino/hardware/avr/1.8.4/variants/mega",
-                "${env:arduinoCliPath}/packages/arduino/hardware/avr/1.8.4/libraries/**",
+                "${env:arduinoCliPath}/packages/arduino/hardware/avr/${env:arduinoCoreVersion}/cores/arduino",
+                "${env:arduinoCliPath}/packages/arduino/hardware/avr/${env:arduinoCoreVersion}/variants/mega",
+                "${env:arduinoCliPath}/packages/arduino/hardware/avr/${env:arduinoCoreVersion}/libraries/**",
                 "${env:arduinoCliPath}/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
                 "${env:arduinoCliPath}/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
                 "${env:arduinoCliPath}/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include",
@@ -540,7 +541,8 @@
                 "__ATOMIC_RELEASE=3",
                 "__BUILTIN_AVR_FMUL=1",
                 "USBCON"
-            ]
+            ],
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
         },
         {
             "name": "avr",

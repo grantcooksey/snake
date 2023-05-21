@@ -1,0 +1,9 @@
+COMPONENT_NAME=test
+
+SRC_FILES = \
+  $(PROJECT_SRC_DIR)/test.cpp \
+
+TEST_SRC_FILES = \
+  $(UNITTEST_SRC_DIR)/test_test.cpp
+
+include $(CPPUTEST_MAKFILE_INFRA)

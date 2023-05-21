@@ -9,7 +9,7 @@ TEST_SOURCES=$(shell find $(TEST_DIR) -type f -name "*.cpp" -o -name "*.ino" -o 
 
 .PHONY: all compile upload test clean format check debug_serial_port
 
-all: compile upload
+all: compile check upload
 
 install-arduino:
 	arduino-cli core install "arduino:avr" "arduino:megaavr"
@@ -34,6 +34,7 @@ ci-test: test
 
 clean:
 	$(MAKE) -C tests clean
+	rm -rf $(BUILD_DIR)
 
 format:
 	clang-format -i $(SRC_SOURCES) $(TEST_SOURCES)

@@ -1,8 +1,6 @@
-#include "CppUTest/TestHarness.h"
+#include "test.h"
 
-extern "C" {
-#include "display.h"
-}
+#include "CppUTest/TestHarness.h"
 
 TEST_GROUP(TestMySum){void setup(){}
 

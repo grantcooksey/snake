@@ -1,6 +1,21 @@
 {
     "files.associations": {
-        "display.h": "c"
+        "display.h": "c",
+        "arduino.h": "c",
+        "logger.h": "c",
+        "stdbool.h": "c"
+    },
+    "[c]": {
+        "editor.tabSize": 2
+    },
+    "[cpp]": {
+        "editor.tabSize": 2
+    },
+    "files.exclude": {
+        "${workspaceFolder}/build/**": true
+    },
+    "search.exclude": {
+        "${workspaceFolder}/build/**": true
     },
     "editor.formatOnSave": true,
     "editor.defaultFormatter" : "ms-vscode.cpptools",
