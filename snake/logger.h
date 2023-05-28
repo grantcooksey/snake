@@ -16,7 +16,7 @@
 
 void log_init();
 void log_info(const char *message);
-void log_info(const __FlashStringHelper *message);
+void log_info(const ArduinoFlashStringHelper *message);
 void log_error(const char *message);
-void log_error(const __FlashStringHelper *message);
+void log_error(const ArduinoFlashStringHelper *message);
 char *get_log_buffer();

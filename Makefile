@@ -16,7 +16,7 @@ install-arduino:
 	arduino-cli lib install "Adafruit GFX Library@1.11.1"  "Adafruit ST7735 and ST7789 Library@1.10.0"
 
 compile:
-	arduino-cli compile --build-path $(BUILD_DIR) -b $(BOARD_TYPE) $(SKETCH)
+	arduino-cli compile --build-property "compiler.cpp.extra_flags=\"\"" --build-path $(BUILD_DIR) -b $(BOARD_TYPE) $(SKETCH)
 
 upload:
 	arduino-cli upload -v --input-dir $(BUILD_DIR) -p $(SERIAL_PORT) --fqbn $(BOARD_TYPE) $(SKETCH)

@@ -3,15 +3,7 @@
 
 #include <stdint.h>
 
-struct bounds {
-  int16_t width;
-  int16_t height;
-};
-
-struct display_position {
-  int16_t x;
-  int16_t y;
-};
+#include "types.h"
 
 void display_init();
 void display_clear();

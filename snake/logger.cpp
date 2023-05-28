@@ -16,7 +16,7 @@ void log_generic(const __FlashStringHelper *message, short level);
 #if LOG_LEVEL != LOG_LEVEL_OFF
 void log_init() {
   if (LOG_LEVEL <= LOG_LEVEL_OFF) {
-    Serial.begin(9600);
+    Serial.begin(SERIAL_BAUD_RATE);
   }
 }
 

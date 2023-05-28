@@ -10,6 +10,7 @@
 
 #include "logger.h"
 #include "pins.h"
+#include "types.h"
 
 // Dependent tft flags
 #define INIT_FLAG INITR_144GREENTAB
