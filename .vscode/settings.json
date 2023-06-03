@@ -3,7 +3,11 @@
         "display.h": "c",
         "arduino.h": "c",
         "logger.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "ratio": "cpp",
+        "algorithm": "cpp"
     },
     "[c]": {
         "editor.tabSize": 2

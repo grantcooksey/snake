@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 // dependant on a 128 X 128 tf, how should we scale this?
 
 #define GRID_ROWS 16

@@ -9,4 +9,5 @@ void bootstrap() {
   log_info(F("Starting snake"));
 
   display_init();
+  randomSeed(analogRead(0));
 }
