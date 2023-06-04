@@ -42,6 +42,10 @@ void display_clear() {
 bounds display_get_bounds() { return display_bounds; }
 
 void display_fill_rect(display_position point, bounds snake_bounds) {
-  tft.fillRect(point.x, point.y, snake_bounds.width, snake_bounds.height,
-               COLOR_WHITE);
+  uint8_t x = point.x * SNAKE_WIDTH;
+  uint8_t y = point.y * SNAKE_HEIGHT;
+  char* log_buffer = get_log_buffer();
+  sprintf(log_buffer, "Draw rect to { x: %d, y: %d }", x, y);
+  log_info(log_buffer);
+  tft.fillRect(x, y, snake_bounds.width, snake_bounds.height, COLOR_WHITE);
 }
