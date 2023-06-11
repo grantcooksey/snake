@@ -4,4 +4,4 @@
 
 #include "types.h"
 
-display_position new_food(bool (*snake_slots)[GRID_COLS]);
+display_position new_food(bool (*game_grid)[GRID_COLS]);

@@ -1,44 +1,67 @@
 #include <stdbool.h>
 
+#include "board.h"
+#include "controls.h"
 #include "display.h"
 #include "food.h"
+#include "include/arduino.h"
 #include "logger.h"
 #include "types.h"
 
-display_position snake[GRID_SPACES] = {0};
-bool snake_slots_index[GRID_ROWS][GRID_COLS] = {0};
-bounds block = {.width = SNAKE_WIDTH, .height = SNAKE_HEIGHT};
+bool game_grid[GRID_ROWS][GRID_COLS] = {0};
 
-display_position draw_food(bool (*snake_slots)[GRID_COLS]);
-direction wait_for_press();
+direction wait_for_first_press();
+void draw(display_position point);
 
 void start() {
   display_clear();
-  snake[0] = {.x = 0, .y = 0};
-  snake_slots_index[0][0] = true;
-  display_position *snake_head = &snake[0];
-  display_position *snake_tail = &snake[0];
-  display_fill_rect(*snake_head, block);
+  game_grid[0][0] = true;
+  board_init();
+  display_position food = new_food(game_grid);
 
-  display_position food = draw_food(&snake_slots_index[0]);
+  draw(*board_get_snake_head());
+  draw(food);
+
+  wait_for_first_press();
 
   bool is_first_press = true;
+
   while (true) {
-    wait_for_press();
+    avr_ulong now = arduino_millis();
+    // direction = get press(direction)  <-  fixed_timing
+    // next_position = next_block(snake head,press_direction)
+    // if (collision(next_position))
+    //    game over
+    // Add new head to snake > *next_head = snake + 1; next_head = position
+    // draw head
+    // if (can_eat_food(food, next_position))
+    //    reset_food()
+    // else
+    //    clear_display(snake_tail)
+    //    game_grid[snake_tail] = false
+    //    snake_tail = snake_tail[+1]
+    //
+    //
+    direction pressed_direction = wait_for_first_press();
   }
   // if head of snake == any position on the snake -> zero out snake blocks
   // if head of snake == food position -> add a block to end, wrap corner if at
   // edge
 }
 
-display_position draw_food(bool (*snake_slots)[GRID_COLS]) {
-  display_position food = new_food(snake_slots);
-  display_fill_rect(food, block);
-  return food;
+direction wait_for_first_press() {
+  direction pressed = DIRECTION_NONE;
+  do {
+    direction pressed = controls_check_press();
+    if (pressed == DIRECTION_NONE) {
+      arduino_delay(20);
+    }
+  } while (pressed == DIRECTION_NONE);
+
+  return pressed;
 }
 
-direction wait_for_press() {
-  // TODO
-  delay(1000);
-  return DIRECTION_RIGHT;
+void draw(display_position point) {
+  display_fill_rect(*board_get_snake_head(),
+                    {.width = SNAKE_WIDTH, .height = SNAKE_HEIGHT});
 }
